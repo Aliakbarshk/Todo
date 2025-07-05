@@ -1,18 +1,28 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState, useEffect } from "react";
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(["This is work one" , "This is work two"])
+  const [todo, setTodo] = useState(["This is work one", "This is work two"]);
 
-  
+  function addWork(work) {
+    const updatedTodo = [...todo, work]; // 🟢 spread old todos + new work
+    setTodo(updatedTodo);
+    console.log(`Added ${work} to the list`, updatedTodo);
+  }
+
+  useEffect(() => {
+    addWork("Hello I am here");
+  }, []); // run only once on mount
 
   return (
     <>
-     
+
+      <input type="text" />
+      {todo.map((item, index) => (
+        <h1 key={index}>{item}</h1>
+      ))}
     </>
-  )
+  );
 }
 
-export default App
+export default App;
